@@ -41,8 +41,17 @@ var startGame = function() {
   }  
   Game.setBoard(3,new TitleScreen("Alien Invasion", 
                                   "Press fire to start playing",
-                                  playGame));
+                                  buyQuarters));
 };
+
+var buyQuarters = function () {
+	document.querySelectorAll('.buy-quarters-button')[0].click();
+}
+
+window.onQuartersCallback = function(data){ 
+	console.log(data.txId);
+	playGame();
+}
 
 var level1 = [
  // Start,   End, Gap,  Type,   Override
@@ -69,13 +78,13 @@ var playGame = function() {
 var winGame = function() {
   Game.setBoard(3,new TitleScreen("You win!", 
                                   "Press fire to play again",
-                                  playGame));
+                                  buyQuarters));
 };
 
 var loseGame = function() {
   Game.setBoard(3,new TitleScreen("You lose!", 
                                   "Press fire to play again",
-                                  playGame));
+                                  buyQuarters));
 };
 
 var Starfield = function(speed,opacity,numStars,clear) {
